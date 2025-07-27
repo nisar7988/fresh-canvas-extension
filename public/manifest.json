@@ -1,20 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "Fresh Canvas - Wallpaper Extension",
+  "name": "Fresh Canvas - New Tab",
   "version": "1.0.0",
   "description": "Beautiful rotating wallpapers for your new tab page",
-  "icons": {
-    "16": "icon-16.png",
-    "48": "icon-48.png",
-    "128": "icon-128.png"
-  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": [
-    "storage"
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
   ],
-  "host_permissions": [
-    "https://images.unsplash.com/*"
-  ]
+  "permissions": ["storage", "tabs", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"]
 }

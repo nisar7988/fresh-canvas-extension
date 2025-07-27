@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Sparkles, Bot, Brain, Zap, Globe, Code, Palette, FileText, Video } from 'lucide-react';
+import { Search, Sparkles, Bot, Brain, Zap, Globe, Code, Palette, FileText, Video, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -8,17 +8,18 @@ interface AITool {
   url: string;
   icon: React.ComponentType<{ className?: string }>;
   color: string;
+  gradient: string;
 }
 
 const aiTools: AITool[] = [
-  { name: 'ChatGPT', url: 'https://chat.openai.com/', icon: Bot, color: 'text-green-400' },
-  { name: 'Claude', url: 'https://claude.ai/', icon: Brain, color: 'text-orange-400' },
-  { name: 'Gemini', url: 'https://gemini.google.com/', icon: Sparkles, color: 'text-blue-400' },
-  { name: 'Perplexity', url: 'https://perplexity.ai/', icon: Zap, color: 'text-purple-400' },
-  { name: 'GitHub Copilot', url: 'https://github.com/features/copilot', icon: Code, color: 'text-gray-400' },
-  { name: 'Midjourney', url: 'https://midjourney.com/', icon: Palette, color: 'text-pink-400' },
-  { name: 'Notion AI', url: 'https://notion.so/', icon: FileText, color: 'text-indigo-400' },
-  { name: 'RunwayML', url: 'https://runwayml.com/', icon: Video, color: 'text-red-400' },
+  { name: 'ChatGPT', url: 'https://chat.openai.com/', icon: Bot, color: 'text-emerald-300', gradient: 'from-emerald-300 to-emerald-400' },
+  { name: 'Claude', url: 'https://claude.ai/', icon: Brain, color: 'text-orange-300', gradient: 'from-orange-300 to-orange-400' },
+  { name: 'Gemini', url: 'https://gemini.google.com/', icon: Sparkles, color: 'text-blue-300', gradient: 'from-blue-300 to-blue-400' },
+  { name: 'Perplexity', url: 'https://perplexity.ai/', icon: Zap, color: 'text-purple-300', gradient: 'from-purple-300 to-purple-400' },
+  { name: 'GitHub Copilot', url: 'https://github.com/features/copilot', icon: Code, color: 'text-gray-300', gradient: 'from-gray-300 to-gray-400' },
+  { name: 'Midjourney', url: 'https://midjourney.com/', icon: Palette, color: 'text-pink-300', gradient: 'from-pink-300 to-pink-400' },
+  { name: 'Notion AI', url: 'https://notion.so/', icon: FileText, color: 'text-indigo-300', gradient: 'from-indigo-300 to-indigo-400' },
+  { name: 'RunwayML', url: 'https://runwayml.com/', icon: Video, color: 'text-red-300', gradient: 'from-red-300 to-red-400' },
 ];
 
 interface SearchAndToolsProps {
@@ -27,7 +28,7 @@ interface SearchAndToolsProps {
 
 export default function SearchAndTools({ isTopBar = false }: SearchAndToolsProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [showAITools, setShowAITools] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +39,10 @@ export default function SearchAndTools({ isTopBar = false }: SearchAndToolsProps
 
   const openAITool = (url: string) => {
     window.open(url, '_blank');
+  };
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
   };
 
   if (isTopBar) {
@@ -67,84 +72,58 @@ export default function SearchAndTools({ isTopBar = false }: SearchAndToolsProps
   }
 
   return (
-    <div className="space-y-6">
-      {/* Google Search Bar */}
-      <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-2xl p-6 shadow-glass animate-slide-up">
-        <form onSubmit={handleSearch} className="relative">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-overlay-light/60" />
-            <Input
-              type="text"
-              placeholder="Search Google..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 pr-4 py-3 text-lg bg-overlay-light/10 border-glass-border/20 text-overlay-light placeholder:text-overlay-light/60 focus:bg-overlay-light/20 transition-all duration-300 rounded-xl"
-            />
-          </div>
-          <div className="flex gap-3 mt-4 justify-center">
-            <Button
-              type="submit"
-              variant="ghost"
-              className="bg-overlay-light/10 hover:bg-overlay-light/20 text-overlay-light border border-glass-border/20 rounded-lg px-6 transition-all duration-300"
-            >
-              Google Search
-            </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={() => window.open('https://www.google.com/doodles', '_blank')}
-              className="bg-overlay-light/10 hover:bg-overlay-light/20 text-overlay-light border border-glass-border/20 rounded-lg px-6 transition-all duration-300"
-            >
-              I'm Feeling Lucky
-            </Button>
-          </div>
-        </form>
-      </div>
+    <div className="">
 
-      {/* AI Tools Section */}
-      <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-2xl p-6 shadow-glass animate-slide-up">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-overlay-light" />
-            <h3 className="text-lg font-semibold text-overlay-light">AI Tools</h3>
+   
+
+
+        <div className="animate-slide-in">
+          <div className=" p-6 lg:p-8 relative">
+           
+            <div className="flex items-center gap-4 mb-6">
+              <div className="relative">
+                <Bot className="h-8 w-8 lg:h-12 lg:w-12 text-purple-600 filter brightness-110" />
+              </div>  
+              <div>
+                <h4 className="text-lg lg:text-xl font-semibold text-overlay-light">AI Assistants</h4>
+                <p className="text-sm lg:text-base text-overlay-light/70">Choose your preferred AI tool</p>
+              </div>
+            </div>
+
+            {/* All Tools Grid */}
+            <div className="flex-col justify-content-evenly flex">
+              {aiTools.map((tool, index) => (
+                <Button
+                  key={tool.name}
+                  variant="ghost"
+                  onClick={() => openAITool(tool.url)}
+                  className="flex flex-col items-center gap-3 p-4 lg:p-6 h-auto bg-overlay-light/5 hover:bg-overlay-light/15 border border-glass-border/10 rounded-xl transition-all duration-500 hover:scale-105 group relative overflow-hidden animate-tool-item  my-2"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* Animated background gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  
+                  {/* Glow effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`}></div>
+                  
+                  {/* Icon with enhanced styling */}
+                  <div className="relative z-10">
+                    <tool.icon className={`h-8 w-8 lg:h-10 lg:w-10 ${tool.color} group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300 filter brightness-110`} />
+                  </div>
+                  
+                  {/* Tool name */}
+                  <span className="text-sm lg:text-base text-overlay-light/80 group-hover:text-overlay-light transition-colors duration-300 font-medium text-center">
+                    {tool.name}
+                  </span>
+                  
+                  {/* Hover animation indicator */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-current opacity-0 group-hover:opacity-60 rounded-full transition-all duration-300 group-hover:scale-150"></div>
+                </Button>
+              ))}
+            </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowAITools(!showAITools)}
-            className="text-overlay-light/80 hover:text-overlay-light transition-colors"
-          >
-            {showAITools ? 'Hide' : 'Show'}
-          </Button>
         </div>
-
-        {showAITools && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 animate-fade-in">
-            {aiTools.map((tool, index) => (
-              <Button
-                key={tool.name}
-                variant="ghost"
-                onClick={() => openAITool(tool.url)}
-                className="flex flex-col items-center gap-2 p-4 h-auto bg-overlay-light/5 hover:bg-overlay-light/15 border border-glass-border/10 rounded-xl transition-all duration-300 hover:scale-105 group"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <tool.icon className={`h-6 w-6 ${tool.color} group-hover:scale-110 transition-transform duration-300`} />
-                <span className="text-xs text-overlay-light/80 group-hover:text-overlay-light transition-colors">
-                  {tool.name}
-                </span>
-              </Button>
-            ))}
-          </div>
-        )}
-
-        {!showAITools && (
-          <div className="flex items-center justify-center py-4">
-            <span className="text-overlay-light/60 text-sm">
-              Click "Show" to access your favorite AI tools
-            </span>
-          </div>
-        )}
-      </div>
+    
     </div>
   );
 }

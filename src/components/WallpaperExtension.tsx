@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 import { RefreshCw, Clock } from 'lucide-react';
 import SearchAndTools from '@/components/SearchAndTools';
 import CalendarComponent from '@/components/CalendarComponent';
+import RightSidebar from '@/components/RightSidebar';
 
 const wallpapers = [
   'https://images.unsplash.com/photo-1469474968028-56623f02e42e',
@@ -82,6 +83,11 @@ export default function WallpaperExtension() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-overlay" />
       
+      {/* Right Sidebar for Tools */}
+      <RightSidebar>
+        <SearchAndTools />
+      </RightSidebar>
+
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Top Search Bar */}
@@ -102,45 +108,43 @@ export default function WallpaperExtension() {
           </div>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="flex-1 px-6 pb-6">
-          <div className="h-full grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Side - AI Tools */}
-            <div className="order-2 lg:order-1">
-              <SearchAndTools />
-            </div>
-
-            {/* Center - Time and Greeting */}
-            <div className="order-1 lg:order-2 flex items-center justify-center">
-              <Card className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 shadow-glass p-8 text-center animate-slide-up w-full">
-                <div className="space-y-6">
-                  {/* Time */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-center gap-2 text-overlay-light/80">
-                      <Clock className="h-5 w-5" />
-                      <span className="text-sm font-medium">Current Time</span>
+        {/* Main Content - Centered Layout */}
+        <div className="flex-1 px-6 pb-6 flex flex-col">
+          {/* Center Section - Time and Calendar */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-4xl w-full">
+              {/* Time Card */}
+              <div className="flex justify-center lg:justify-end">
+                <Card className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 shadow-glass p-6 lg:p-8 text-center animate-slide-up w-full max-w-sm lg:max-w-md">
+                  <div className="space-y-4 lg:space-y-6">
+                    {/* Time */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center gap-2 text-overlay-light/80">
+                        <Clock className="h-4 w-4 lg:h-5 lg:w-5" />
+                        <span className="text-xs lg:text-sm font-medium">Current Time</span>
+                      </div>
+                      <div className="text-2xl lg:text-4xl xl:text-5xl font-bold text-overlay-light">
+                        {formatTime(currentTime)}
+                      </div>
                     </div>
-                    <div className="text-3xl md:text-5xl font-bold text-overlay-light">
-                      {formatTime(currentTime)}
+
+                    {/* Greeting */}
+                    <div className="pt-3 border-t border-glass-border/20">
+                      <div className="text-lg lg:text-xl xl:text-2xl font-semibold text-overlay-light">
+                        {getGreeting()}!
+                      </div>
+                      <div className="text-xs lg:text-sm text-overlay-light/70 mt-1">
+                        Fresh Canvas Extension
+                      </div>
                     </div>
                   </div>
+                </Card>
+              </div>
 
-                  {/* Greeting */}
-                  <div className="pt-4 border-t border-glass-border/20">
-                    <div className="text-xl md:text-2xl font-semibold text-overlay-light">
-                      {getGreeting()}!
-                    </div>
-                    <div className="text-sm text-overlay-light/70 mt-2">
-                      Fresh Canvas Extension
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            {/* Right Side - Calendar */}
-            <div className="order-3">
-              <CalendarComponent />
+              {/* Calendar */}
+              <div className="flex justify-center lg:justify-start">
+                <CalendarComponent />
+              </div>
             </div>
           </div>
         </div>

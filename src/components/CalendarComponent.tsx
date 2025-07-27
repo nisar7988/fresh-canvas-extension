@@ -61,45 +61,45 @@ export default function CalendarComponent() {
   };
 
   return (
-    <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-2xl p-6 shadow-glass animate-slide-up">
+    <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-2xl p-4 lg:p-6 shadow-glass animate-slide-up w-full max-w-sm lg:max-w-md">
       {/* Calendar Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3 lg:mb-4">
         <div className="flex items-center gap-2">
-          <CalendarIcon className="h-5 w-5 text-overlay-light" />
-          <h3 className="text-lg font-semibold text-overlay-light">Calendar</h3>
+          <CalendarIcon className="h-4 w-4 lg:h-5 lg:w-5 text-overlay-light" />
+          <h3 className="text-sm lg:text-base font-semibold text-overlay-light">Calendar</h3>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => navigateMonth('prev')}
-            className="text-overlay-light/80 hover:text-overlay-light hover:bg-overlay-light/10 p-1 h-8 w-8"
+            className="text-overlay-light/80 hover:text-overlay-light hover:bg-overlay-light/10 p-1 h-6 w-6 lg:h-8 lg:w-8"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-3 w-3 lg:h-4 lg:w-4" />
           </Button>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => navigateMonth('next')}
-            className="text-overlay-light/80 hover:text-overlay-light hover:bg-overlay-light/10 p-1 h-8 w-8"
+            className="text-overlay-light/80 hover:text-overlay-light hover:bg-overlay-light/10 p-1 h-6 w-6 lg:h-8 lg:w-8"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-3 w-3 lg:h-4 lg:w-4" />
           </Button>
         </div>
       </div>
 
       {/* Month and Year */}
-      <div className="text-center mb-4">
-        <h2 className="text-xl font-bold text-overlay-light">
+      <div className="text-center mb-3 lg:mb-4">
+        <h2 className="text-sm lg:text-base xl:text-lg font-bold text-overlay-light">
           {monthNames[currentMonth]} {currentYear}
         </h2>
       </div>
 
       {/* Day Names */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      <div className="grid grid-cols-7 gap-0.5 mb-1 lg:mb-2">
         {dayNames.map(day => (
-          <div key={day} className="text-center py-2">
-            <span className="text-xs font-medium text-overlay-light/70">
+          <div key={day} className="text-center py-1">
+            <span className="text-xs lg:text-sm font-medium text-overlay-light/70">
               {day}
             </span>
           </div>
@@ -107,7 +107,7 @@ export default function CalendarComponent() {
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-0.5">
         {calendarDays.map((day, index) => (
           <div key={index} className="aspect-square">
             {day ? (
@@ -116,7 +116,7 @@ export default function CalendarComponent() {
                 size="sm"
                 onClick={() => setSelectedDate(new Date(currentYear, currentMonth, day))}
                 className={`
-                  w-full h-full text-sm font-medium transition-all duration-200
+                  w-full h-full text-xs lg:text-sm font-medium transition-all duration-200
                   ${isToday(day) 
                     ? 'bg-primary text-primary-foreground hover:bg-primary/90 font-bold' 
                     : isSelected(day)
@@ -135,12 +135,12 @@ export default function CalendarComponent() {
       </div>
 
       {/* Today's Date Display */}
-      <div className="mt-4 pt-4 border-t border-glass-border/20 text-center">
-        <div className="text-sm text-overlay-light/70">Today</div>
-        <div className="text-lg font-semibold text-overlay-light">
+      <div className="mt-3 lg:mt-4 pt-2 lg:pt-3 border-t border-glass-border/20 text-center">
+        <div className="text-xs lg:text-sm text-overlay-light/70">Today</div>
+        <div className="text-xs lg:text-sm font-semibold text-overlay-light">
           {today.toLocaleDateString([], { 
-            weekday: 'long',
-            month: 'long', 
+            weekday: 'short',
+            month: 'short', 
             day: 'numeric'
           })}
         </div>
