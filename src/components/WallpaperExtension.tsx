@@ -31,6 +31,7 @@ export default function WallpaperExtension() {
   const [showWallpaperControls, setShowWallpaperControls] = useState(false);
   const [isStatic, setIsStatic] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
   const allWallpapers = [...defaultWallpapers, ...userWallpapers];
 
@@ -105,6 +106,22 @@ export default function WallpaperExtension() {
     });
   };
 
+  // Close controls when clicking outside
+  useEffect(() => {
+    if (!showWallpaperControls) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        controlsRef.current &&
+        !controlsRef.current.contains(event.target as Node)
+      ) {
+        setShowWallpaperControls(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showWallpaperControls]);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -141,7 +158,10 @@ export default function WallpaperExtension() {
           </Button>
 
           {showWallpaperControls && (
-            <Card className="backdrop-blur-sm bg-white/10 p-4 rounded-lg shadow-lg border border-white/20 w-72 animate-in fade-in zoom-in-95">
+            <Card
+              ref={controlsRef}
+              className="backdrop-blur-sm bg-white/10 p-4 rounded-lg shadow-lg border border-white/20 w-72 animate-in fade-in zoom-in-95"
+            >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="static-mode" className="text-white/90 text-sm">
