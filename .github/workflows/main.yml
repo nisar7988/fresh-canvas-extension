@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Upload Build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-output
-          path: ./build  # or ./dist or ./.next based on your project
+          path: ./build
