@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { RefreshCw, Clock, Calendar } from 'lucide-react';
+import SearchAndTools from '@/components/SearchAndTools';
 
 const wallpapers = [
   'https://images.unsplash.com/photo-1469474968028-56623f02e42e',
@@ -96,7 +97,8 @@ export default function WallpaperExtension() {
         </div>
 
         {/* Center Content */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6">
+        <div className="flex-1 flex flex-col items-center justify-center px-6 space-y-8">
+          {/* Time and Date Card */}
           <Card className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 shadow-glass p-8 text-center animate-slide-up">
             <div className="space-y-6">
               {/* Time */}
@@ -132,14 +134,10 @@ export default function WallpaperExtension() {
               </div>
             </div>
           </Card>
-        </div>
 
-        {/* Bottom Info */}
-        <div className="p-6 text-center">
-          <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-lg px-4 py-2 inline-block shadow-glass">
-            <span className="text-sm text-overlay-light/80">
-              Click the refresh button to change wallpaper
-            </span>
+          {/* Search and AI Tools */}
+          <div className="w-full max-w-2xl">
+            <SearchAndTools />
           </div>
         </div>
       </div>
