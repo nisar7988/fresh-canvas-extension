@@ -72,58 +72,72 @@ export default function SearchAndTools({ isTopBar = false }: SearchAndToolsProps
   }
 
   return (
-    <div className="">
+    <div className="relative">
+      {/* Custom scrollbar styling using regular CSS classes */}
+      <style>{`
+        .glass-scroll-container {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+        }
+        
+        .glass-scroll-container::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        
+        .glass-scroll-container::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: 4px;
+        }
+        
+        .glass-scroll-container::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.2);
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+        }
+        
+        .glass-scroll-container::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+      `}</style>
 
-   
-
-
-        <div className="animate-slide-in">
-          <div className=" p-6 lg:p-8 relative">
-           
-            <div className="flex items-center gap-4 mb-6">
-              <div className="relative">
-                <Bot className="h-8 w-8 lg:h-12 lg:w-12 text-purple-600 filter brightness-110" />
-              </div>  
-              <div>
-                <h4 className="text-lg lg:text-xl font-semibold text-overlay-light">AI Assistants</h4>
-                <p className="text-sm lg:text-base text-overlay-light/70">Choose your preferred AI tool</p>
-              </div>
-            </div>
-
-            {/* All Tools Grid */}
-            <div className="flex-col justify-content-evenly flex">
-              {aiTools.map((tool, index) => (
-                <Button
-                  key={tool.name}
-                  variant="ghost"
-                  onClick={() => openAITool(tool.url)}
-                  className="flex flex-col items-center gap-3 p-4 lg:p-6 h-auto bg-overlay-light/5 hover:bg-overlay-light/15 border border-glass-border/10 rounded-xl transition-all duration-500 hover:scale-105 group relative overflow-hidden animate-tool-item  my-2"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Animated background gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                  
-                  {/* Glow effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`}></div>
-                  
-                  {/* Icon with enhanced styling */}
-                  <div className="relative z-10">
-                    <tool.icon className={`h-8 w-8 lg:h-10 lg:w-10 ${tool.color} group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300 filter brightness-110`} />
-                  </div>
-                  
-                  {/* Tool name */}
-                  <span className="text-sm lg:text-base text-overlay-light/80 group-hover:text-overlay-light transition-colors duration-300 font-medium text-center">
-                    {tool.name}
-                  </span>
-                  
-                  {/* Hover animation indicator */}
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-current opacity-0 group-hover:opacity-60 rounded-full transition-all duration-300 group-hover:scale-150"></div>
-                </Button>
-              ))}
+      <div className="animate-slide-in">
+        <div className="p-6 lg:p-8 relative">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="relative">
+              <Bot className="h-8 w-8 lg:h-12 lg:w-12 text-purple-600 filter brightness-110" />
+            </div>  
+            <div>
+              <h4 className="text-lg lg:text-xl font-semibold text-overlay-light">AI Assistants</h4>
+              <p className="text-sm lg:text-base text-overlay-light/70">Choose your preferred AI tool</p>
             </div>
           </div>
+
+          {/* Scrollable container with custom scrollbar */}
+          <div className="flex-col justify-content-evenly flex max-h-[70vh]  glass-scroll-container pr-2">
+            {aiTools.map((tool, index) => ( 
+              <Button
+                key={tool.name}
+                variant="ghost"
+                onClick={() => openAITool(tool.url)}
+                className="flex flex-row items-center gap-3 p-4 lg:p-6 h-auto bg-overlay-light/5 hover:bg-overlay-light/15 border border-glass-border/10 rounded-xl transition-all duration-500 hover:scale-105 group relative overflow-hidden animate-tool-item my-2"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`}></div>
+                <div className="relative z-10">
+                  <tool.icon className={`h-8 w-8 lg:h-10 lg:w-10 ${tool.color} group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300 filter brightness-110`} />
+                </div>
+                <span className="text-sm lg:text-base text-overlay-light/80 group-hover:text-overlay-light transition-colors duration-300 font-medium text-center">
+                  {tool.name}
+                </span>
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-current opacity-0 group-hover:opacity-60 rounded-full transition-all duration-300 group-hover:scale-150"></div>
+              </Button>
+            ))}
+          </div>
         </div>
-    
+      </div>
     </div>
   );
 }

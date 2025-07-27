@@ -61,7 +61,7 @@ export default function CalendarComponent() {
   };
 
   return (
-    <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-2xl p-4 lg:p-6 shadow-glass animate-slide-up w-full max-w-sm lg:max-w-md">
+    <div className="">
       {/* Calendar Header */}
       <div className="flex items-center justify-between mb-3 lg:mb-4">
         <div className="flex items-center gap-2">
@@ -88,13 +88,7 @@ export default function CalendarComponent() {
         </div>
       </div>
 
-      {/* Month and Year */}
-      <div className="text-center mb-3 lg:mb-4">
-        <h2 className="text-sm lg:text-base xl:text-lg font-bold text-overlay-light">
-          {monthNames[currentMonth]} {currentYear}
-        </h2>
-      </div>
-
+ 
       {/* Day Names */}
       <div className="grid grid-cols-7 gap-0.5 mb-1 lg:mb-2">
         {dayNames.map(day => (
@@ -118,7 +112,7 @@ export default function CalendarComponent() {
                 className={`
                   w-full h-full text-xs lg:text-sm font-medium transition-all duration-200
                   ${isToday(day) 
-                    ? 'bg-primary text-primary-foreground hover:bg-primary/90 font-bold' 
+                    ? 'bg-gradient-glass text-primary-foreground hover:bg-primary/90 font-bold' 
                     : isSelected(day)
                     ? 'bg-overlay-light/20 text-overlay-light'
                     : 'text-overlay-light/80 hover:bg-overlay-light/10 hover:text-overlay-light'
@@ -134,17 +128,7 @@ export default function CalendarComponent() {
         ))}
       </div>
 
-      {/* Today's Date Display */}
-      <div className="mt-3 lg:mt-4 pt-2 lg:pt-3 border-t border-glass-border/20 text-center">
-        <div className="text-xs lg:text-sm text-overlay-light/70">Today</div>
-        <div className="text-xs lg:text-sm font-semibold text-overlay-light">
-          {today.toLocaleDateString([], { 
-            weekday: 'short',
-            month: 'short', 
-            day: 'numeric'
-          })}
-        </div>
-      </div>
+  
     </div>
   );
 }
