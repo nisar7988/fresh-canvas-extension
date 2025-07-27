@@ -57,5 +57,5 @@ If you face any issues or have suggestions, feel free to contact me or raise an 
 
 ## 📌 Note
 
-This extension is not published on the Chrome Web Store. It's safe and easy to install manually using the steps above.
+This extension is not published on the Chrome Web Store. It's safe and easy to install manually using the steps above. 
 
