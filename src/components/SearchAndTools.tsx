@@ -21,7 +21,11 @@ const aiTools: AITool[] = [
   { name: 'RunwayML', url: 'https://runwayml.com/', icon: Video, color: 'text-red-400' },
 ];
 
-export default function SearchAndTools() {
+interface SearchAndToolsProps {
+  isTopBar?: boolean;
+}
+
+export default function SearchAndTools({ isTopBar = false }: SearchAndToolsProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [showAITools, setShowAITools] = useState(false);
 
@@ -35,6 +39,32 @@ export default function SearchAndTools() {
   const openAITool = (url: string) => {
     window.open(url, '_blank');
   };
+
+  if (isTopBar) {
+    return (
+      <div className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 rounded-2xl p-4 shadow-glass animate-slide-up">
+        <form onSubmit={handleSearch} className="flex items-center gap-3">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-overlay-light/60" />
+            <Input
+              type="text"
+              placeholder="Search Google..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-4 py-2 bg-overlay-light/10 border-glass-border/20 text-overlay-light placeholder:text-overlay-light/60 focus:bg-overlay-light/20 transition-all duration-300 rounded-lg"
+            />
+          </div>
+          <Button
+            type="submit"
+            variant="ghost"
+            className="bg-overlay-light/10 hover:bg-overlay-light/20 text-overlay-light border border-glass-border/20 rounded-lg px-4 transition-all duration-300"
+          >
+            Search
+          </Button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

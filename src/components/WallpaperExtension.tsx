@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { RefreshCw, Clock, Calendar } from 'lucide-react';
+import { RefreshCw, Clock } from 'lucide-react';
 import SearchAndTools from '@/components/SearchAndTools';
+import CalendarComponent from '@/components/CalendarComponent';
 
 const wallpapers = [
   'https://images.unsplash.com/photo-1469474968028-56623f02e42e',
@@ -83,61 +84,64 @@ export default function WallpaperExtension() {
       
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Top Bar */}
-        <div className="p-6 flex justify-end">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={changeWallpaper}
-            disabled={isLoading}
-            className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 text-overlay-light hover:bg-gradient-glass shadow-glass"
-          >
-            <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
-          </Button>
+        {/* Top Search Bar */}
+        <div className="p-6">
+          <div className="flex items-center justify-between gap-6">
+            <div className="flex-1 max-w-2xl mx-auto">
+              <SearchAndTools isTopBar={true} />
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={changeWallpaper}
+              disabled={isLoading}
+              className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 text-overlay-light hover:bg-gradient-glass shadow-glass"
+            >
+              <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+            </Button>
+          </div>
         </div>
 
-        {/* Center Content */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 space-y-8">
-          {/* Time and Date Card */}
-          <Card className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 shadow-glass p-8 text-center animate-slide-up">
-            <div className="space-y-6">
-              {/* Time */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-center gap-2 text-overlay-light/80">
-                  <Clock className="h-5 w-5" />
-                  <span className="text-sm font-medium">Current Time</span>
-                </div>
-                <div className="text-4xl md:text-6xl font-bold text-overlay-light">
-                  {formatTime(currentTime)}
-                </div>
-              </div>
-
-              {/* Date */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-center gap-2 text-overlay-light/80">
-                  <Calendar className="h-4 w-4" />
-                  <span className="text-sm font-medium">Today</span>
-                </div>
-                <div className="text-lg md:text-xl text-overlay-light/90">
-                  {formatDate(currentTime)}
-                </div>
-              </div>
-
-              {/* Greeting */}
-              <div className="pt-4 border-t border-glass-border/20">
-                <div className="text-xl md:text-2xl font-semibold text-overlay-light">
-                  {getGreeting()}!
-                </div>
-                <div className="text-sm text-overlay-light/70 mt-2">
-                  Fresh Canvas Extension • Wallpaper {currentWallpaper + 1} of {wallpapers.length}
-                </div>
-              </div>
+        {/* Main Content Grid */}
+        <div className="flex-1 px-6 pb-6">
+          <div className="h-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Side - AI Tools */}
+            <div className="order-2 lg:order-1">
+              <SearchAndTools />
             </div>
-          </Card>
 
-          {/* Search and AI Tools */}
-          <div className="w-full max-w-2xl">
-            <SearchAndTools />
+            {/* Center - Time and Greeting */}
+            <div className="order-1 lg:order-2 flex items-center justify-center">
+              <Card className="backdrop-blur-glass bg-gradient-glass border border-glass-border/20 shadow-glass p-8 text-center animate-slide-up w-full">
+                <div className="space-y-6">
+                  {/* Time */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-center gap-2 text-overlay-light/80">
+                      <Clock className="h-5 w-5" />
+                      <span className="text-sm font-medium">Current Time</span>
+                    </div>
+                    <div className="text-3xl md:text-5xl font-bold text-overlay-light">
+                      {formatTime(currentTime)}
+                    </div>
+                  </div>
+
+                  {/* Greeting */}
+                  <div className="pt-4 border-t border-glass-border/20">
+                    <div className="text-xl md:text-2xl font-semibold text-overlay-light">
+                      {getGreeting()}!
+                    </div>
+                    <div className="text-sm text-overlay-light/70 mt-2">
+                      Fresh Canvas Extension
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Right Side - Calendar */}
+            <div className="order-3">
+              <CalendarComponent />
+            </div>
           </div>
         </div>
       </div>
