@@ -9,7 +9,7 @@ You can install it manually from the provided ZIP file without using the Chrome 
 
 Download the extension ZIP file from the link below:
 
-👉 [Download from Google Drive](https://drive.google.com/file/d/1lPabogR78VqiMKDztvv7RgNeGnKb-rpc/view?usp=sharing)
+👉 [Download from Google Drive]([https://drive.google.com/file/d/1lPabogR78VqiMKDztvv7RgNeGnKb-rpc/view?usp=sharing](https://drive.google.com/drive/folders/1Zrof358Tb5c0sZjt2JW1u2ucgimWtQYj?usp=sharing))
 
 ---
 
