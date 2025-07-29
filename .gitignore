@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+credentials.json
+release.js
+extension.zip
+token.json
