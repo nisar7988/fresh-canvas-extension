@@ -35,14 +35,57 @@ export default function WallpaperExtension() {
 
   const allWallpapers = [...defaultWallpapers, ...userWallpapers];
 
+  const getWallpaperToShow = () => {
+    if (isStatic && customWallpaper) {
+      return customWallpaper;
+    }
+    // If customWallpaper is set but not static, include it in rotation
+    if (!isStatic && customWallpaper && !userWallpapers.includes(customWallpaper)) {
+      return customWallpaper;
+    }
+    return `${allWallpapers[currentWallpaper]}?w=1920&h=1080&fit=crop&crop=entropy&auto=format&q=80`;
+  };
+
+  // Load persisted wallpaper and static mode on mount
   useEffect(() => {
+    const savedWallpaper = localStorage.getItem('customWallpaper');
+    const savedIsStatic = localStorage.getItem('isStatic');
+    if (savedWallpaper) {
+      setCustomWallpaper(savedWallpaper);
+    }
+    if (savedIsStatic) {
+      setIsStatic(savedIsStatic === 'true');
+    }
+    setCurrentWallpaper(Math.floor(Math.random() * defaultWallpapers.length));
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-
-    setCurrentWallpaper(Math.floor(Math.random() * defaultWallpapers.length));
-
     return () => clearInterval(timer);
+  }, []);
+
+  // Persist static mode changes
+  useEffect(() => {
+    localStorage.setItem('isStatic', isStatic.toString());
+  }, [isStatic]);
+
+  // Persist custom wallpaper changes
+  useEffect(() => {
+    if (customWallpaper) {
+      localStorage.setItem('customWallpaper', customWallpaper);
+    } else {
+      localStorage.removeItem('customWallpaper');
+    }
+  }, [customWallpaper]);
+
+  useEffect(() => {
+    localStorage.setItem('userWallpapers', JSON.stringify(userWallpapers));
+  }, [userWallpapers]);
+
+  useEffect(() => {
+    const savedUserWallpapers = localStorage.getItem('userWallpapers');
+    if (savedUserWallpapers) {
+      setUserWallpapers(JSON.parse(savedUserWallpapers));
+    }
   }, []);
 
   const changeWallpaper = () => {
@@ -67,6 +110,7 @@ export default function WallpaperExtension() {
         setCustomWallpaper(img);
         setUserWallpapers((prev) => [...prev, img]);
         setShowWallpaperControls(false);
+        localStorage.setItem('customWallpaper', img); // persist immediately
       };
       reader.readAsDataURL(file);
     }
@@ -79,6 +123,7 @@ export default function WallpaperExtension() {
       setUserWallpapers((prev) => [...prev, wallpaperLink]);
       setWallpaperLink('');
       setShowWallpaperControls(false);
+      localStorage.setItem('customWallpaper', wallpaperLink); // persist immediately
     }
   };
 
@@ -129,11 +174,7 @@ export default function WallpaperExtension() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-out animate-fade-in"
         style={{
-          backgroundImage: `url(${
-            customWallpaper
-              ? customWallpaper
-              : `${allWallpapers[currentWallpaper]}?w=1920&h=1080&fit=crop&crop=entropy&auto=format&q=80`
-          })`,
+          backgroundImage: `url(${getWallpaperToShow()})`,
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -235,6 +276,7 @@ export default function WallpaperExtension() {
                     onClick={() => {
                       setCustomWallpaper(null);
                       setShowWallpaperControls(false);
+                      localStorage.removeItem('customWallpaper');
                     }}
                     className="w-full justify-start text-white hover:bg-white/20"
                   >
