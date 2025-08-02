@@ -33,7 +33,7 @@ export default function SearchAndTools({ isTopBar = false }: SearchAndToolsProps
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
+      window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`);
     }
   };
 
