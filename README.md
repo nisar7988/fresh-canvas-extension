@@ -1,61 +1,151 @@
-# 🚀 Custom Chrome Extension – Install Manually
+# 🎨 Fresh Canvas – Modern Chrome New Tab Extension
 
-This is a simple and lightweight Chrome extension designed to [💡 briefly describe what your extension does — e.g., "refresh your wallpaper on every tab load" or "enhance your browsing experience with quick tools"].  
-You can install it manually from the provided ZIP file without using the Chrome Web Store.
+[![Chrome Compatible](https://img.shields.io/badge/Chrome-Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 
----
-
-## 📂 Download Extension
-
-Download the extension ZIP file from the link below:
-
-👉 [Download from Google Drive]([https://drive.google.com/file/d/1lPabogR78VqiMKDztvv7RgNeGnKb-rpc/view?usp=sharing](https://drive.google.com/drive/folders/1Zrof358Tb5c0sZjt2JW1u2ucgimWtQYj?usp=sharing))
+**Fresh Canvas** transforms your default Chrome "New Tab" page into a sleek, functional, and visually captivating personal workspace. Powered by glassmorphism UI, real-time clock widgets, customizable high-definition wallpapers, integrated calendar view, and quick access launchers for leading AI tools.
 
 ---
 
-## 🧩 How to Install the Extension in Chrome
+## 📸 Screenshots & Showcase
 
-1. Open **Chrome** and go to `chrome://extensions/`
-2. **Enable Developer Mode** (toggle at the top-right corner)
-3. Click **"Load unpacked"**
-4. **Unzip** the downloaded file from the link above
-5. Select the **unzipped folder**
-6. Done! The extension should now appear in your extensions list.
+| Main Dashboard | Widgets & AI Tools | Wallpaper Controls |
+| :---: | :---: | :---: |
+| ![Fresh Canvas Dashboard](screenshots/dashboard.png) | ![Widgets & AI Launcher](screenshots/widgets.png) | ![Wallpaper Controls](screenshots/wallpaper-controls.png) |
 
 ---
 
-## 🌐 How to Install in Other Chromium Browsers
+## ✨ Key Features
 
-This method works for browsers like:
+- 🖼️ **Dynamic Wallpaper Engine**
+  - High-definition HD curated Unsplash photo rotation.
+  - Upload custom local background images or set custom image URLs.
+  - Toggle between **Static Mode** (lock favorite wallpaper) and **Dynamic Mode** (auto-rotate on new tab).
+  - All wallpaper settings persist seamlessly in local storage.
 
-- **Brave**
-- **Microsoft Edge**
-- **Opera**
+- 🤖 **AI Tools Launcher**
+  - One-click quick launcher for top AI productivity tools: **ChatGPT, Claude, Gemini, Perplexity, GitHub Copilot, Midjourney, Notion AI, RunwayML**.
 
-Just follow the same steps:
-1. Go to your browser’s extensions page
-2. Enable developer mode (if required)
-3. Load the **unzipped** folder as an unpacked extension
+- 🔍 **Universal Glassmorphism Search Bar**
+  - Integrated search box to query Google instantly without leaving your dashboard tab.
 
----
+- 📅 **Integrated Interactive Calendar**
+  - Full-featured calendar grid with smooth month navigation to keep track of dates at a glance.
 
-## 📝 About This Project
+- 📐 **Collapsible Sidebar UI**
+  - Retractable side panel built with frosted glass styling to keep your main workspace minimal and clutter-free.
 
-This extension was built as a personal project by [Your Name or Handle] to [your project’s goal — e.g., "automatically refresh wallpapers", "track daily focus", "customize your browsing experience", etc.].
-
-No tracking, no ads — just clean, functional code.
-
----
-
-
-
-## 💬 Feedback / Issues
-
-If you face any issues or have suggestions, feel free to contact me or raise an issue in the future GitHub repo.
+- ⚡ **Lightweight & Privacy-First**
+  - Zero third-party trackers, zero ads, 100% offline data execution stored entirely inside your browser.
 
 ---
 
-## 📌 Note
+## 📂 Download & Manual Installation
 
-This extension is not published on the Chrome Web Store. It's safe and easy to install manually using the steps above. 
+You can install Fresh Canvas manually in Chrome or any Chromium-based browser without needing the Chrome Web Store.
 
+### 📥 Step 1: Download
+Download the pre-packaged ZIP archive:
+
+👉 **[Download Fresh Canvas Extension (Google Drive)](https://drive.google.com/drive/folders/1Zrof358Tb5c0sZjt2JW1u2ucgimWtQYj?usp=sharing)**
+
+---
+
+### 🧩 Step 2: Install in Chrome
+
+1. Open **Google Chrome** and navigate to `chrome://extensions/` (or go to **Menu > Extensions > Manage Extensions**).
+2. Enable **Developer Mode** using the toggle in the top-right corner.
+3. Extract (unzip) the downloaded `Fresh-Canvas` ZIP file on your computer.
+4. Click the **"Load unpacked"** button in Chrome.
+5. Select the extracted folder.
+6. Open a new tab to experience **Fresh Canvas**! 🎉
+
+---
+
+### 🌐 Step 3: Install in Other Chromium Browsers
+
+Fresh Canvas is fully compatible with all Chromium browsers:
+- **Brave**: Navigate to `brave://extensions/`
+- **Microsoft Edge**: Navigate to `edge://extensions/`
+- **Opera**: Navigate to `opera://extensions/`
+
+*Follow the exact same "Load unpacked" steps as described above.*
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [React 18](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- **Bundler**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + Glassmorphism Effects + [Shadcn UI](https://ui.shadcn.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **State & Storage**: Browser `localStorage` + React Hooks
+
+---
+
+## 🚀 Development Setup
+
+If you wish to build or customize the extension source code locally:
+
+### 1. Prerequisites
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- `npm` or `bun`
+
+### 2. Clone repository & install dependencies
+```bash
+git clone https://github.com/your-username/fresh-canvas-extension.git
+cd fresh-canvas-extension
+npm install
+```
+
+### 3. Run Development Server
+```bash
+npm run dev
+```
+
+### 4. Build Production Extension Bundle
+```bash
+npm run build
+```
+The compiled, ready-to-load extension files will be placed into the `dist/` directory.
+
+---
+
+## 📁 Project Structure
+
+```text
+fresh-canvas-extension/
+├── public/                 # Extension manifest & static assets
+├── screenshots/            # Showcase images for README
+│   ├── dashboard.png
+│   ├── widgets.png
+│   └── wallpaper-controls.png
+├── src/
+│   ├── components/         # Core UI components
+│   │   ├── CalendarComponent.tsx   # Interactive calendar grid
+│   │   ├── RightSidebar.tsx        # Retractable glass panel
+│   │   ├── SearchAndTools.tsx      # Search bar & AI quick launcher
+│   │   └── WallpaperExtension.tsx  # Main wallpaper & clock container
+│   ├── pages/              # Main route views
+│   ├── background.ts       # Service worker script
+│   ├── content.ts          # Content script
+│   └── index.css           # Glassmorphism & global styles
+├── package.json
+└── vite.config.ts
+```
+
+---
+
+## 🤝 Contributing & Feedback
+
+Contributions, issue reports, and feature requests are welcome!  
+If you enjoy using **Fresh Canvas**, please star ⭐️ this repository!
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
